@@ -1,0 +1,75 @@
+[selene]
+base = "lua51"
+name = "synapse"
+
+[getconnections]
+any = true
+
+[getloadedmodules]
+any = true
+
+[setclipboard]
+any = true
+
+[hookfunction]
+any = true
+
+[hookmetamethod]
+any = true
+
+[getnamecallmethod]
+any = true
+
+[checkcaller]
+any = true
+
+[Drawing]
+any = true
+
+[loadfile]
+any = true
+
+[isfile]
+any = true
+
+[readfile]
+any = true
+
+[writefile]
+any = true
+
+[getgc]
+any = true
+
+[getrenv]
+any = true
+
+[fireproximityprompt]
+any = true
+
+[syn]
+any = true
+
+[newcclosure]
+any = true
+
+[fireclickdetector]
+any = true
+
+[setreadonly]
+any = true
+
+[getrawmetatable]
+any = true
+
+[getspecialinfo]
+any = true
+
+[printconsole]
+any = true
+
+[HttpGet]
+any = true
+
+[is_synapse_function]
+any = true
