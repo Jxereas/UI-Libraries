@@ -544,10 +544,7 @@ function library:CreateWindow(windowName)
 			local ButtonElement = Instance.new("Frame")
 			local Button = Instance.new("TextButton")
 			local ButtonCorner = Instance.new("UICorner")
-			local InfoImage = Instance.new("ImageLabel")
-			local InfoAspect = Instance.new("UIAspectRatioConstraint")
 			local TouchImage = Instance.new("ImageLabel")
-			local TouchAspect = Instance.new("UIAspectRatioConstraint")
 			local ButName = Instance.new("TextLabel")
 
 			callback = callback or function() end
@@ -573,44 +570,24 @@ function library:CreateWindow(windowName)
 			ButtonCorner.CornerRadius = UDim.new(0, 5)
 			ButtonCorner.Name = "ButtonCorner"
 			ButtonCorner.Parent = Button
-
-			InfoImage.Name = "InfoImage"
-			InfoImage.Parent = Button
-			InfoImage.AnchorPoint = Vector2.new(1, 0)
-			InfoImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			InfoImage.BackgroundTransparency = 1.000
-			InfoImage.BorderSizePixel = 0
-			InfoImage.Position = UDim2.new(1, 0, 0, 0)
-			InfoImage.Size = UDim2.new(1, 0, 1, 0)
-			InfoImage.Image = "rbxassetid://3926305904"
-			InfoImage.ImageRectOffset = Vector2.new(764, 764)
-			InfoImage.ImageRectSize = Vector2.new(36, 36)
-			
-			InfoAspect.Name = "InfoAspect"
-			InfoAspect.Parent = InfoImage
 			
 			TouchImage.Name = "TouchImage"
 			TouchImage.AnchorPoint = Vector2.new(0,.5)
-			TouchImage.Position = UDim2.fromScale(0,.5)
+			TouchImage.Position = UDim2.new(0,3,.5,0)
 			TouchImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			TouchImage.BackgroundTransparency = 1.000
 			TouchImage.BorderSizePixel = 0
-			TouchImage.Size = UDim2.new(.9, 0, .9, 0)
+			TouchImage.Size = UDim2.fromOffset(20, 20)
 			TouchImage.ImageColor3 = imageInfo and imageInfo.ImageColor or Color3.fromRGB(255,255,255)
-			TouchImage.Image = imageInfo and imageInfo.Id or "rbxassetid://3926305904"
-			TouchImage.ImageRectOffset = imageInfo and Vector2.new(0,0) or Vector2.new(84, 206)
-			TouchImage.ImageRectSize = imageInfo and Vector2.new(0,0) or Vector2.new(36, 36)
+			TouchImage.Image = imageInfo and imageInfo.Id or "rbxassetid://9322846658"
 			TouchImage.Parent = Button
-	
-			TouchAspect.Name = "TouchAspect"
-			TouchAspect.Parent = TouchImage
 			
 			ButName.Name = "ButName"
 			ButName.Parent = Button
 			ButName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			ButName.BackgroundTransparency = 1.000
-			ButName.Position = UDim2.new(0.075000003, 0, 0, 0)
-			ButName.Size = UDim2.new(0.925000012, 0, 1, 0)
+			ButName.Position = UDim2.new(0, 26, 0, 0)
+			ButName.Size = UDim2.new(1, -26, 1, 0)
 			ButName.Font = Enum.Font.GothamSemibold
 			ButName.Text = buttonName or "New Button"
 			ButName.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -636,12 +613,8 @@ function library:CreateWindow(windowName)
 			local ToggleElement = Instance.new("Frame")
 			local Button = Instance.new("TextButton")
 			local ButtonCorner = Instance.new("UICorner")
-			local InfoImage = Instance.new("ImageLabel")
-			local InfoAspect = Instance.new("UIAspectRatioConstraint")
 			local ToggleDisabled = Instance.new("ImageLabel")
-			local DisabledAspect = Instance.new("UIAspectRatioConstraint")
 			local ToggleEnabled = Instance.new("ImageLabel")
-			local EnabledAspect = Instance.new("UIAspectRatioConstraint")
 			local TogName = Instance.new("TextLabel")
 
 			callback = callback or function() end
@@ -671,59 +644,34 @@ function library:CreateWindow(windowName)
 			ButtonCorner.Name = "ButtonCorner"
 			ButtonCorner.Parent = Button
 
-			InfoImage.Name = "InfoImage"
-			InfoImage.Parent = Button
-			InfoImage.AnchorPoint = Vector2.new(1, 0)
-			InfoImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			InfoImage.BackgroundTransparency = 1.000
-			InfoImage.BorderSizePixel = 0
-			InfoImage.Position = UDim2.new(1, 0, 0, 0)
-			InfoImage.Size = UDim2.new(1, 0, 1, 0)
-			InfoImage.Image = "rbxassetid://3926305904"
-			InfoImage.ImageRectOffset = Vector2.new(764, 764)
-			InfoImage.ImageRectSize = Vector2.new(36, 36)
-
-			InfoAspect.Name = "InfoAspect"
-			InfoAspect.Parent = InfoImage
-
 			ToggleDisabled.Name = "ToggleDisabled"
 			ToggleDisabled.AnchorPoint = Vector2.new(0,.5)
-			ToggleDisabled.Position = UDim2.fromScale(0,.5)
+			ToggleDisabled.Position = UDim2.new(0,3,.5,0)
 			ToggleDisabled.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			ToggleDisabled.BackgroundTransparency = 1.000
 			ToggleDisabled.BorderSizePixel = 0
-			ToggleDisabled.Size = UDim2.new(0.9, 0, 0.9, 0)
-			ToggleDisabled.ImageColor3 =Color3.fromRGB(60, 60, 60)
-			ToggleDisabled.Image = imageInfo and imageInfo.Id or "rbxassetid://3926309567"
-			ToggleDisabled.ImageRectOffset = imageInfo and Vector2.new(0,0) or Vector2.new(628, 420)
-			ToggleDisabled.ImageRectSize = imageInfo and Vector2.new(0,0) or Vector2.new(48, 48)
+			ToggleDisabled.Size = UDim2.fromOffset(20,20)
+			ToggleDisabled.ImageColor3 = Color3.fromRGB(255,255,255)
+			ToggleDisabled.Image = imageInfo and imageInfo.Id or "rbxassetid://9323553784"
 			ToggleDisabled.Parent = Button
-
-			DisabledAspect.Name = "DisabledAspect"
-			DisabledAspect.Parent = ToggleDisabled
 
 			ToggleEnabled.Name = "ToggleEnabled"
 			ToggleEnabled.AnchorPoint = Vector2.new(0,.5)
-			ToggleEnabled.Position = UDim2.fromScale(0,.5)
+			ToggleEnabled.Position = UDim2.new(0,3,.5,0)
 			ToggleEnabled.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			ToggleEnabled.BackgroundTransparency = 1.000
-			ToggleEnabled.Size = UDim2.new(0.9, 0, 0.9, 0)
-			ToggleEnabled.Image = imageInfo and imageInfo.Id or "rbxassetid://3926309567"
-			ToggleEnabled.ImageColor3 = imageInfo and imageInfo.ImageColor or Color3.fromRGB(255, 255, 255)
-			ToggleEnabled.ImageRectOffset = imageInfo and Vector2.new(0,0) or Vector2.new(784, 420)
-			ToggleEnabled.ImageRectSize = imageInfo and Vector2.new(0,0) or Vector2.new(48, 48)
+			ToggleEnabled.Size = UDim2.fromOffset(20,20)
+			ToggleEnabled.Image = imageInfo and imageInfo.Id or "rbxassetid://9323551028"
+			ToggleEnabled.ImageColor3 = imageInfo and imageInfo.ImageColor or Color3.fromRGB(0, 255, 0)
 			ToggleEnabled.ImageTransparency = 1.000
 			ToggleEnabled.Parent = Button
-
-			EnabledAspect.Name = "EnabledAspect"
-			EnabledAspect.Parent = ToggleEnabled
 
 			TogName.Name = "TogName"
 			TogName.Parent = Button
 			TogName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			TogName.BackgroundTransparency = 1.000
-			TogName.Position = UDim2.new(0.075000003, 0, 0, 0)
-			TogName.Size = UDim2.new(0.925000012, 0, 1, 0)
+			TogName.Position = UDim2.new(0, 26, 0, 0)
+			TogName.Size = UDim2.new(1, -26, 1, 0)
 			TogName.Font = Enum.Font.GothamSemibold
 			TogName.Text = toggleName or "New Toggle"
 			TogName.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -778,10 +726,7 @@ function library:CreateWindow(windowName)
 			local TextBoxElement = Instance.new("Frame")
 			local Button = Instance.new("TextButton")
 			local PencilImage = Instance.new("ImageLabel")
-			local TouchAspect = Instance.new("UIAspectRatioConstraint")
 			local ElementCorner = Instance.new("UICorner")
-			local InfoImage = Instance.new("ImageLabel")
-			local InfoAspect = Instance.new("UIAspectRatioConstraint")
 			local TextName = Instance.new("TextLabel")
 			local TextBox = Instance.new("TextBox")
 			local ElementCorner_2 = Instance.new("UICorner")
@@ -809,46 +754,26 @@ function library:CreateWindow(windowName)
 
 			PencilImage.Name = "PencilImage"
 			PencilImage.AnchorPoint = Vector2.new(0,.5)
-			PencilImage.Position = UDim2.fromScale(0,.5)
+			PencilImage.Position = UDim2.new(0,3,.5,0)
 			PencilImage.AnchorPoint = Vector2.new(0, 0.5)
 			PencilImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			PencilImage.BackgroundTransparency = 1.000
 			PencilImage.BorderSizePixel = 0
-			PencilImage.Size = UDim2.new(0.9, 0, 0.9, 0)
+			PencilImage.Size = UDim2.new(0,20,0,20)
 			PencilImage.ImageColor3 = imageInfo and imageInfo.ImageColor or Color3.fromRGB(255,255,255)
-			PencilImage.Image = imageInfo and imageInfo.Id or "rbxassetid://3926305904"
-			PencilImage.ImageRectOffset = imageInfo and Vector2.new(0,0) or Vector2.new(324, 604)
-			PencilImage.ImageRectSize = imageInfo and Vector2.new(0,0) or Vector2.new(36, 36)
+			PencilImage.Image = imageInfo and imageInfo.Id or "rbxassetid://9323815021"
 			PencilImage.Parent = TextBoxElement
-
-			TouchAspect.Name = "TouchAspect"
-			TouchAspect.Parent = PencilImage
 
 			ElementCorner.CornerRadius = UDim.new(0, 5)
 			ElementCorner.Name = "ElementCorner"
 			ElementCorner.Parent = TextBoxElement
 
-			InfoImage.Name = "InfoImage"
-			InfoImage.Parent = TextBoxElement
-			InfoImage.AnchorPoint = Vector2.new(1, 0)
-			InfoImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			InfoImage.BackgroundTransparency = 1.000
-			InfoImage.BorderSizePixel = 0
-			InfoImage.Position = UDim2.new(1, 0, 0, 0)
-			InfoImage.Size = UDim2.new(1, 0, 1, 0)
-			InfoImage.Image = "rbxassetid://3926305904"
-			InfoImage.ImageRectOffset = Vector2.new(764, 764)
-			InfoImage.ImageRectSize = Vector2.new(36, 36)
-
-			InfoAspect.Name = "InfoAspect"
-			InfoAspect.Parent = InfoImage
-
 			TextName.Name = "TextName"
 			TextName.Parent = TextBoxElement
 			TextName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			TextName.BackgroundTransparency = 1.000
-			TextName.Position = UDim2.new(0.075000003, 0, 0, 0)
-			TextName.Size = UDim2.new(0.925000012, 0, 1, 0)
+			TextName.Position = UDim2.new(0,26,0,0)
+			TextName.Size = UDim2.new(0.7, -34, 1, 0)
 			TextName.Font = Enum.Font.GothamSemibold
 			TextName.Text = boxName or "New TextBox"
 			TextName.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -859,14 +784,14 @@ function library:CreateWindow(windowName)
 			TextBox.AnchorPoint = Vector2.new(1, 0.5)
 			TextBox.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
 			TextBox.BorderSizePixel = 0
-			TextBox.Position = UDim2.new(0.899999976, 0, 0.5, 0)
+			TextBox.Position = UDim2.new(1, -3, 0.5, 0)
 			TextBox.PlaceholderColor3 = Color3.fromRGB(255,255,255)
 			TextBox.PlaceholderText = "Type Here!"
 			TextBox.Text = ""
 			TextBox.ZIndex = 999
 			TextBox.ClipsDescendants = true
 			TextBox.ClearTextOnFocus = false
-			TextBox.Size = UDim2.new(0.300000012, 0, 0.899999976, 0)
+			TextBox.Size = UDim2.new(.3, 0, 0.9, 0)
 			TextBox.Font = Enum.Font.GothamSemibold
 			TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 			TextBox.TextSize = 12.000
@@ -896,11 +821,8 @@ function library:CreateWindow(windowName)
 		function elementHandler:Label(description, tbl, imageInfo)
 			local LabelElement = Instance.new("Frame")
 			local ElementCorner = Instance.new("UICorner")
-			local InfoImage = Instance.new("ImageLabel")
-			local InfoAspect = Instance.new("UIAspectRatioConstraint")
 			local LabName = Instance.new("TextLabel")
 			local LabelImage = Instance.new("ImageLabel")
-			local LabelAspect = Instance.new("UIAspectRatioConstraint")
 
 			tbl = tbl or {}
 
@@ -920,27 +842,12 @@ function library:CreateWindow(windowName)
 			ElementCorner.Name = "ElementCorner"
 			ElementCorner.Parent = LabelElement
 
-			InfoImage.Name = "InfoImage"
-			InfoImage.Parent = LabelElement
-			InfoImage.AnchorPoint = Vector2.new(1, 0)
-			InfoImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			InfoImage.BackgroundTransparency = 1.000
-			InfoImage.BorderSizePixel = 0
-			InfoImage.Position = UDim2.new(1, 0, 0, 0)
-			InfoImage.Size = UDim2.new(1, 0, 1, 0)
-			InfoImage.Image = "rbxassetid://3926305904"
-			InfoImage.ImageRectOffset = Vector2.new(764, 764)
-			InfoImage.ImageRectSize = Vector2.new(36, 36)
-
-			InfoAspect.Name = "InfoAspect"
-			InfoAspect.Parent = InfoImage
-
 			LabName.Name = "LabName"
 			LabName.Parent = LabelElement
 			LabName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			LabName.BackgroundTransparency = 1.000
-			LabName.Position = UDim2.new(0.075000003, 0, 0, 0)
-			LabName.Size = UDim2.new(0.925000012, 0, 1, 0)
+			LabName.Position = UDim2.new(0, 26, 0, 0)
+			LabName.Size = UDim2.new(1, -26, 1, 0)
 			LabName.Font = Enum.Font.GothamSemibold
 			LabName.Text = description or "New Label"
 			LabName.TextColor3 = textColor
@@ -949,19 +856,14 @@ function library:CreateWindow(windowName)
 
 			LabelImage.Name = "LabelImage"
 			LabelImage.AnchorPoint = Vector2.new(0,.5)
-			LabelImage.Position = UDim2.fromScale(0,.5)
+			LabelImage.Position = UDim2.new(0,3,.5,0)
 			LabelImage.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 			LabelImage.BackgroundTransparency = 1.000
 			LabelImage.BorderSizePixel = 0
-			LabelImage.Size = UDim2.new(1, 0, 1, 0)
+			LabelImage.Size = UDim2.new(0, 20, 0, 20)
 			LabelImage.ImageColor3 = imageInfo and imageInfo.ImageColor or Color3.fromRGB(255,255,255)
-			LabelImage.Image = imageInfo and imageInfo.Id or "rbxassetid://3926305904"
-			LabelImage.ImageRectOffset = imageInfo and Vector2.new(0,0) or Vector2.new(202, 522)
-			LabelImage.ImageRectSize = imageInfo and Vector2.new(0,0) or Vector2.new(40, 40)
+			LabelImage.Image = imageInfo and imageInfo.Id or "rbxassetid://9323772603"
 			LabelImage.Parent = LabelElement
-
-			LabelAspect.Name = "LabelAspect"
-			LabelAspect.Parent = LabelImage
 
 			local labelHandler = {}
 			function labelHandler:ChangeText(newTxt)
@@ -974,11 +876,8 @@ function library:CreateWindow(windowName)
 		function elementHandler:Slider(sliderName, maxValue, callback, imageInfo)			
 			local SliderElement = Instance.new("Frame")
 			local ElementCorner = Instance.new("UICorner")
-			local InfoImage = Instance.new("ImageLabel")
-			local InfoAspect = Instance.new("UIAspectRatioConstraint")
 			local SliderName = Instance.new("TextLabel")
 			local SliderImage = Instance.new("ImageLabel")
-			local SliderAspect = Instance.new("UIAspectRatioConstraint")
 			local Max = Instance.new("TextButton")
 			local Bar = Instance.new("Frame")
 			local BarCorner = Instance.new("UICorner")
@@ -1001,27 +900,13 @@ function library:CreateWindow(windowName)
 			ElementCorner.Name = "ElementCorner"
 			ElementCorner.Parent = SliderElement
 
-			InfoImage.Name = "InfoImage"
-			InfoImage.Parent = SliderElement
-			InfoImage.AnchorPoint = Vector2.new(1, 0)
-			InfoImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			InfoImage.BackgroundTransparency = 1.000
-			InfoImage.BorderSizePixel = 0
-			InfoImage.Position = UDim2.new(1, 0, 0, 0)
-			InfoImage.Size = UDim2.new(1, 0, 1, 0)
-			InfoImage.Image = "rbxassetid://3926305904"
-			InfoImage.ImageRectOffset = Vector2.new(764, 764)
-			InfoImage.ImageRectSize = Vector2.new(36, 36)
-
-			InfoAspect.Name = "InfoAspect"
-			InfoAspect.Parent = InfoImage
-
 			SliderName.Name = "SliderName"
 			SliderName.Parent = SliderElement
+			SliderName.ClipsDescendants = true
 			SliderName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			SliderName.BackgroundTransparency = 1.000
-			SliderName.Position = UDim2.new(0.075000003, 0, 0, 0)
-			SliderName.Size = UDim2.new(0.925000012, 0, 1, 0)
+			SliderName.Position = UDim2.new(0, 26, 0, 0)
+			SliderName.Size = UDim2.new(.475, -37, 1, 0)
 			SliderName.Font = Enum.Font.GothamSemibold
 			SliderName.Text = sliderName or "New Slider"
 			SliderName.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -1030,27 +915,22 @@ function library:CreateWindow(windowName)
 
 			SliderImage.Name = "SliderImage"
 			SliderImage.AnchorPoint = Vector2.new(0,.5)
-			SliderImage.Position = UDim2.fromScale(0,.5)
+			SliderImage.Position = UDim2.new(0,3,.5,0)
 			SliderImage.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 			SliderImage.BackgroundTransparency = 1.000
 			SliderImage.BorderSizePixel = 0
-			SliderImage.Size = UDim2.new(.9, 0, .9, 0)
+			SliderImage.Size = UDim2.new(0,20,0,20)
 			SliderImage.ImageColor3 = imageInfo and imageInfo.ImageColor or Color3.fromRGB(255,255,255)
-			SliderImage.Image = imageInfo and imageInfo.Id or "rbxassetid://3926305904"
-			SliderImage.ImageRectOffset = imageInfo and Vector2.new(0,0) or Vector2.new(362, 40)
-			SliderImage.ImageRectSize = imageInfo and Vector2.new(0,0) or Vector2.new(40, 40)
+			SliderImage.Image = imageInfo and imageInfo.Id or "rbxassetid://9323139890"
 			SliderImage.Parent = SliderElement
-
-			SliderAspect.Name = "SliderAspect"
-			SliderAspect.Parent = SliderImage
 
 			Max.Name = "Max"
 			Max.Parent = SliderElement
 			Max.AnchorPoint = Vector2.new(1, 0.5)
 			Max.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
 			Max.BorderSizePixel = 0
-			Max.Position = UDim2.new(0.925000012, 0, 0.5, 0)
-			Max.Size = UDim2.new(0.425000012, 0, 0.5, 0)
+			Max.Position = UDim2.new(1, -3, 0.5, 0)
+			Max.Size = UDim2.new(0.425, 0, 0.5, 0)
 			Max.Font = Enum.Font.SourceSans
 			Max.Text = ""
 			Max.TextColor3 = Color3.fromRGB(0, 0, 0)
@@ -1074,7 +954,7 @@ function library:CreateWindow(windowName)
 			TextBox.AnchorPoint = Vector2.new(1, 0.5)
 			TextBox.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
 			TextBox.ClipsDescendants = true
-			TextBox.Position = UDim2.new(0.49000001, 0, 0.5, 0)
+			TextBox.Position = UDim2.new(.575, -5, 0.5, 0)
 			TextBox.Size = UDim2.new(0.100000001, 0, 0.800000012, 0)
 			TextBox.Font = Enum.Font.GothamBold
 			TextBox.Text = "0"
@@ -1157,10 +1037,7 @@ function library:CreateWindow(windowName)
 			local DropdownElement = Instance.new("Frame")
 			local DropdownButton = Instance.new("TextButton")
 			local ButtonCorner = Instance.new("UICorner")
-			local InfoImage = Instance.new("ImageLabel")
-			local InfoAspect = Instance.new("UIAspectRatioConstraint")
 			local DropdownImage = Instance.new("ImageLabel")
-			local DropdownAspect = Instance.new("UIAspectRatioConstraint")
 			local DropdownName = Instance.new("TextLabel")
 			local DropdownList = Instance.new("UIListLayout")
 			local OptionSelect = Instance.new("TextButton")
@@ -1196,43 +1073,23 @@ function library:CreateWindow(windowName)
 			ButtonCorner.Name = "ButtonCorner"
 			ButtonCorner.Parent = DropdownButton
 
-			InfoImage.Name = "InfoImage"
-			InfoImage.Parent = DropdownButton
-			InfoImage.AnchorPoint = Vector2.new(1, 0)
-			InfoImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			InfoImage.BackgroundTransparency = 1.000
-			InfoImage.BorderSizePixel = 0
-			InfoImage.Position = UDim2.new(1, 0, 0, 0)
-			InfoImage.Size = UDim2.new(1, 0, 1, 0)
-			InfoImage.Image = "rbxassetid://3926305904"
-			InfoImage.ImageRectOffset = Vector2.new(764, 764)
-			InfoImage.ImageRectSize = Vector2.new(36, 36)
-
-			InfoAspect.Name = "InfoAspect"
-			InfoAspect.Parent = InfoImage
-
 			DropdownImage.Name = "DropdownImage"
 			DropdownImage.AnchorPoint = Vector2.new(0,.5)
-			DropdownImage.Position = UDim2.fromScale(0,.5)
+			DropdownImage.Position = UDim2.new(0,3,.5,0)
 			DropdownImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			DropdownImage.BackgroundTransparency = 1.000
 			DropdownImage.BorderSizePixel = 0
-			DropdownImage.Size = UDim2.new(1, 0, 1, 0)
+			DropdownImage.Size = UDim2.new(0,20,0,20)
 			DropdownImage.ImageColor3 = imageInfo and imageInfo.ImageColor or Color3.fromRGB(255,255,255)
-			DropdownImage.Image = imageInfo and imageInfo.Id or "rbxassetid://3926305904"
-			DropdownImage.ImageRectOffset = imageInfo and Vector2.new(0,0) or Vector2.new(282, 681)
-			DropdownImage.ImageRectSize = imageInfo and Vector2.new(0,0) or Vector2.new(40, 40)
+			DropdownImage.Image = imageInfo and imageInfo.Id or "rbxassetid://9324047489"
 			DropdownImage.Parent = DropdownButton
-
-			DropdownAspect.Name = "DropdownAspect"
-			DropdownAspect.Parent = DropdownImage
 
 			DropdownName.Name = "DropdownName"
 			DropdownName.Parent = DropdownButton
 			DropdownName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			DropdownName.BackgroundTransparency = 1.000
-			DropdownName.Position = UDim2.new(0.075000003, 0, 0, 0)
-			DropdownName.Size = UDim2.new(0.925000012, 0, 1, 0)
+			DropdownName.Position = UDim2.new(0, 26, 0, 0)
+			DropdownName.Size = UDim2.new(1, -26, 1, 0)
 			DropdownName.Font = Enum.Font.GothamSemibold
 			DropdownName.Text = dropdownName or "New Dropdown"
 			DropdownName.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -1354,11 +1211,8 @@ function library:CreateWindow(windowName)
 		function elementHandler:Keybind(keybindName, defaultKeybind, callback, imageInfo)
 			local KeybindElement = Instance.new("Frame")
 			local Button = Instance.new("TextButton")
-			local InfoImage = Instance.new("ImageLabel")
-			local InfoAspect = Instance.new("UIAspectRatioConstraint")
 			local KeybindName = Instance.new("TextLabel")
 			local KeyboardImage = Instance.new("ImageLabel")
-			local KeyboardAspect = Instance.new("UIAspectRatioConstraint")
 			local KeybindText = Instance.new("TextLabel")
 			local ElementCorner = Instance.new("UICorner")
 
@@ -1385,27 +1239,12 @@ function library:CreateWindow(windowName)
 			Button.TextColor3 = Color3.fromRGB(255, 255, 255)
 			Button.TextSize = 18.000
 
-			InfoImage.Name = "InfoImage"
-			InfoImage.Parent = Button
-			InfoImage.AnchorPoint = Vector2.new(1, 0)
-			InfoImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			InfoImage.BackgroundTransparency = 1.000
-			InfoImage.BorderSizePixel = 0
-			InfoImage.Position = UDim2.new(1, 0, 0, 0)
-			InfoImage.Size = UDim2.new(1, 0, 1, 0)
-			InfoImage.Image = "rbxassetid://3926305904"
-			InfoImage.ImageRectOffset = Vector2.new(764, 764)
-			InfoImage.ImageRectSize = Vector2.new(36, 36)
-
-			InfoAspect.Name = "InfoAspect"
-			InfoAspect.Parent = InfoImage
-
 			KeybindName.Name = "KeybindName"
 			KeybindName.Parent = Button
 			KeybindName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			KeybindName.BackgroundTransparency = 1.000
-			KeybindName.Position = UDim2.new(0.075000003, 0, 0, 0)
-			KeybindName.Size = UDim2.new(0.649999976, 0, 1, 0)
+			KeybindName.Position = UDim2.new(0, 26, 0, 0)
+			KeybindName.Size = UDim2.new(.8, -32, 1, 0)
 			KeybindName.Font = Enum.Font.GothamSemibold
 			KeybindName.Text = keybindName or "New Keybind"
 			KeybindName.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -1414,19 +1253,14 @@ function library:CreateWindow(windowName)
 
 			KeyboardImage.Name = "KeyboardImage"
 			KeyboardImage.AnchorPoint = Vector2.new(0,.5)
-			KeyboardImage.Position = UDim2.fromScale(0,.5)
+			KeyboardImage.Position = UDim2.new(0,3,.5,0)
 			KeyboardImage.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 			KeyboardImage.BackgroundTransparency = 1.000
 			KeyboardImage.BorderSizePixel = 0
-			KeyboardImage.Size = UDim2.new(0.9, 0, 0.9, 0)
+			KeyboardImage.Size = UDim2.new(0,20,0,20)
 			KeyboardImage.ImageColor3 = imageInfo and imageInfo.ImageColor or Color3.fromRGB(255,255,255)
-			KeyboardImage.Image = imageInfo and imageInfo.Id or "rbxassetid://3926305904"
-			KeyboardImage.ImageRectOffset = imageInfo and Vector2.new(0,0) or Vector2.new(922, 521.5)
-			KeyboardImage.ImageRectSize = imageInfo and Vector2.new(0,0) or Vector2.new(40, 40)
+			KeyboardImage.Image = imageInfo and imageInfo.Id or "rbxassetid://9323980256"
 			KeyboardImage.Parent = Button
-
-			KeyboardAspect.Name = "KeyboardAspect"
-			KeyboardAspect.Parent = KeyboardImage
 
 			KeybindText.Name = "KeybindText"
 			KeybindText.Parent = Button
@@ -1434,8 +1268,8 @@ function library:CreateWindow(windowName)
 			KeybindText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			KeybindText.BackgroundTransparency = 1.000
 			KeybindText.ClipsDescendants = true
-			KeybindText.Position = UDim2.new(0.925000012, 0, 0, 0)
-			KeybindText.Size = UDim2.new(0.275000006, 0, 1, 0)
+			KeybindText.Position = UDim2.new(1, -3, 0, 0)
+			KeybindText.Size = UDim2.new(0.2, 0, 1, 0)
 			KeybindText.Font = Enum.Font.GothamSemibold
 			KeybindText.Text = defaultKeybind.Name or "F"
 			KeybindText.TextColor3 = Color3.fromRGB(255, 255, 255)
