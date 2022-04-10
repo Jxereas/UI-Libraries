@@ -605,7 +605,7 @@ local function deleteNotifsOutsideFrame(): nil
     end
 end
 
-function Notification.new(notifType: string, heading: string, body: string, callback): table
+function Notification.new(notifType: string, heading: string, body: string, autoRemove: boolean, autoRemoveTime: number, callback): table
     local notificationTypes = {
         ["error"] = errorTemplate,
         ["info"] = infoTemplate,
@@ -657,6 +657,16 @@ function Notification.new(notifType: string, heading: string, body: string, call
     notif.Parent = notifsHolderFrame
     checkTextSize()
     openNotif()
+
+    if autoRemove then
+        coroutine.wrap(function()
+            autoRemoveTime = autoRemoveTime or 5
+            task.wait(autoRemoveTime)
+            if notif and notif:FindFirstChild("templateFrame") then
+                closeNotif()
+            end
+        end)()
+    end
 
     local newNotif = setmetatable({}, Notification)
     newNotif.Instance = notif
