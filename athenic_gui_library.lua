@@ -529,9 +529,13 @@ function library:CreateWindow(windowName)
 					TabButton:Destroy()
 					NewPage:Destroy()
 				else
-					for _,v in pairs(PageScrollFrame:GetChildren()) do
-						if v:IsA("Frame") and v.Name:lower():find("element") and v.Name:lower():find(InstanceType:lower()) and v:FindFirstChildWhichIsA("TextLabel", true).Text:lower() == InstanceText:lower() then
-							v:Destroy()
+					for _, element in pairs(PageScrollFrame:GetDescendants()) do
+						if element:IsA("Frame") and element.Name:lower():find("element") and element.Name:lower():find(InstanceType:lower()) then
+							for _, textLabel in pairs(element:GetDescendants()) do
+								if textLabel:IsA("TextLabel") and textLabel.Text:lower() == InstanceText:lower() then
+									element:Destroy()
+								end
+							end
 						end
 					end
 				end
