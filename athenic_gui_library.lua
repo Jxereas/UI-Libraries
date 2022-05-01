@@ -9,11 +9,37 @@ for _, connection in pairs(getconnections(player.Idled)) do
     end
 end
 
-function library:CreateWindow(windowName)
+function library:CreateWindow(windowName, inputedTheme)
 	if game:GetService("CoreGui"):FindFirstChild("UILibrary") then
 		game:GetService("CoreGui").UILibrary:Destroy()
-	end	
+	end
 
+	local themeTable = {
+		PageBackground = Color3.fromRGB(32, 34, 37),
+		PageOutterBackground = Color3.fromRGB(54, 57, 63),
+		ButtonBackground = Color3.fromRGB(52, 52, 52),
+		HeaderButtons = Color3.fromRGB(255,255,255),
+		TabBackground = Color3.fromRGB(47, 49, 54),
+		TabColor = Color3.fromRGB(54, 57, 63),
+		TabSelectedBackground = Color3.fromRGB(37, 39, 43),
+		LabelColor = Color3.fromRGB(20, 20, 20),
+		ButtonBoxColor = Color3.fromRGB(35, 35, 35),
+		TextColor = Color3.fromRGB(255, 255, 255),
+		PushedIconColor = Color3.fromRGB(60,60,60),
+		SelectedIconColor = Color3.fromRGB(0,255,0),
+		IconColor = Color3.fromRGB(255, 255, 255),
+		ButtonBoxTextColor = Color3.fromRGB(255,255,255),
+		TitleTextColor = Color3.fromRGB(114, 118, 125),
+		TitleBackground = Color3.fromRGB(32, 34, 37)
+	}
+	
+	inputedTheme = inputedTheme or {}
+	for i, v in pairs(inputedTheme) do
+		if themeTable[i] then
+			themeTable[i] = v
+		end
+	end
+	
 	local offsetSizesTable = {}
 
 	local mouse = player:GetMouse()
@@ -51,7 +77,7 @@ function library:CreateWindow(windowName)
 	MainWindow.Name = "MainWindow"
 	MainWindow.Parent = UILibrary
 	MainWindow.AnchorPoint = Vector2.new(0.5, 0.5)
-	MainWindow.BackgroundColor3 = Color3.fromRGB(32, 34, 37)
+	MainWindow.BackgroundColor3 = themeTable.TitleBackground
 	MainWindow.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	MainWindow.BorderSizePixel = 0
 	MainWindow.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -60,7 +86,7 @@ function library:CreateWindow(windowName)
 	Background.Name = "Background"
 	Background.Parent = MainWindow
 	Background.AnchorPoint = Vector2.new(1, 1)
-	Background.BackgroundColor3 = Color3.fromRGB(54, 57, 63)
+	Background.BackgroundColor3 = themeTable.PageOutterBackground
 	Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Background.BorderSizePixel = 0
 	Background.Position = UDim2.new(1, 0, 1, 0)
@@ -71,7 +97,7 @@ function library:CreateWindow(windowName)
 	Tabs.Name = "Tabs"
 	Tabs.Parent = Background
 	Tabs.Active = true
-	Tabs.BackgroundColor3 = Color3.fromRGB(47, 49, 54)
+	Tabs.BackgroundColor3 = themeTable.TabBackground
 	Tabs.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Tabs.BorderSizePixel = 0
 	Tabs.Size = UDim2.new(0.25, 0, 1, 0)
@@ -119,7 +145,7 @@ function library:CreateWindow(windowName)
 	Title.Size = UDim2.new(0.5, 0, 1, 0)
 	Title.Font = Enum.Font.SourceSansBold
 	Title.Text = windowName or "New Window"
-	Title.TextColor3 = Color3.fromRGB(114, 118, 125)
+	Title.TextColor3 = themeTable.TitleTextColor
 	Title.TextScaled = true
 	Title.TextSize = 14.000
 	Title.TextWrapped = true
@@ -137,6 +163,7 @@ function library:CreateWindow(windowName)
 	CloseButton.Position = UDim2.new(1, 0, 0.5, 0)
 	CloseButton.Size = UDim2.new(1, 0, 1, 0)
 	CloseButton.Image = "rbxassetid://3926305904"
+	CloseButton.ImageColor3 = themeTable.HeaderButtons
 	CloseButton.ImageRectOffset = Vector2.new(284, 4)
 	CloseButton.ImageRectSize = Vector2.new(24, 24)
 	CloseButton.ZIndex = 987
@@ -153,6 +180,7 @@ function library:CreateWindow(windowName)
 	MinimizeButton.Position = UDim2.new(0.970000029, 0, 0.5, 0)
 	MinimizeButton.Size = UDim2.new(1, 0, 1, 0)
 	MinimizeButton.Image = "rbxassetid://3926305904"
+	MinimizeButton.ImageColor3 = themeTable.HeaderButtons
 	MinimizeButton.ImageRectOffset = Vector2.new(723, 280)
 	MinimizeButton.ImageRectSize = Vector2.new(40, 40)
 	MinimizeButton.ZIndex = 999
@@ -170,6 +198,7 @@ function library:CreateWindow(windowName)
 	MaximizeButton.Position = UDim2.new(0.925000012, 0, 0.5, 0)
 	MaximizeButton.Size = UDim2.new(1, 0, 1, 0)
 	MaximizeButton.Image = "rbxassetid://3926305904"
+	MaximizeButton.ImageColor3 = themeTable.HeaderButtons
 	MaximizeButton.ImageRectOffset = Vector2.new(962, 280)
 	MaximizeButton.ImageRectSize = Vector2.new(40, 40)
 	MaximizeButton.ImageTransparency = 0
@@ -181,7 +210,7 @@ function library:CreateWindow(windowName)
 	CornerHiding.Name = "CornerHiding"
 	CornerHiding.Parent = MainWindow
 	CornerHiding.AnchorPoint = Vector2.new(1, 1)
-	CornerHiding.BackgroundColor3 = Color3.fromRGB(54, 57, 63)
+	CornerHiding.BackgroundColor3 = themeTable.PageOutterBackground
 	CornerHiding.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	CornerHiding.BorderSizePixel = 0
 	CornerHiding.Position = UDim2.new(1, 0, 1, 0)
@@ -391,13 +420,13 @@ function library:CreateWindow(windowName)
 
 		TabButton.Name = "TabButton"
 		TabButton.Parent = Tabs
-		TabButton.BackgroundColor3 = Color3.fromRGB(54, 57, 63)
+		TabButton.BackgroundColor3 = themeTable.TabColor
 		TabButton.BorderSizePixel = 0
 		TabButton.Size = UDim2.new(1, 0, 0.0500000007, 0)
 		TabButton.ClipsDescendants = true
 		TabButton.Text = tabName or "New Tab"
 		TabButton.Font = Enum.Font.GothamBold
-		TabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TabButton.TextColor3 = themeTable.TextColor
 		TabButton.TextSize = 16.000
 		TabButton.Size = UDim2.new(0, TabButton.AbsoluteSize.X, 0, TabButton.AbsoluteSize.Y)
 
@@ -415,7 +444,7 @@ function library:CreateWindow(windowName)
 
 		PageBackground.Name = "PageBackground"
 		PageBackground.Parent = NewPage
-		PageBackground.BackgroundColor3 = Color3.fromRGB(32, 34, 37)
+		PageBackground.BackgroundColor3 = themeTable.PageBackground
 		PageBackground.Size = UDim2.new(1, 0, 1, 0)
 		PageBackground.ZIndex = 0
 
@@ -426,7 +455,7 @@ function library:CreateWindow(windowName)
 		PageScrollFrame.Name = "PageScrollFrame"
 		PageScrollFrame.Parent = NewPage
 		PageScrollFrame.Active = true
-		PageScrollFrame.BackgroundColor3 = Color3.fromRGB(32, 34, 37)
+		PageScrollFrame.BackgroundColor3 = themeTable.PageBackground
 		PageScrollFrame.BackgroundTransparency = 1.000
 		PageScrollFrame.BorderSizePixel = 0
 		PageScrollFrame.Size = UDim2.new(1, 0, 1, 0)
@@ -449,7 +478,7 @@ function library:CreateWindow(windowName)
 			tabImage.Size = UDim2.new(0, TabButton.AbsoluteSize.Y - 2.5, 1, -5)
 			tabImage.Position = UDim2.fromOffset(2.5,2.5)
 			tabImage.BackgroundTransparency = 1
-			tabImage.ImageColor3 = imageInfo.ImageColor or Color3.fromRGB(255, 255, 255)
+			tabImage.ImageColor3 = imageInfo.ImageColor or themeTable.IconColor
 			tabImage.Image = imageInfo.Id or "rbxasset://textures/ui/GuiImagePlaceholder.png"
 			tabImage.Parent = TabButton
 		end
@@ -489,11 +518,11 @@ function library:CreateWindow(windowName)
 
 				for _, tab in pairs(Tabs:GetChildren()) do
 					if tab:IsA("TextButton") then
-						tab.BackgroundColor3 = Color3.fromRGB(54, 57, 63)
+						tab.BackgroundColor3 = themeTable.TabColor
 					end
 				end
 
-				TabButton.BackgroundColor3 = Color3.fromRGB(37, 39, 43)
+				TabButton.BackgroundColor3 = themeTable.TabSelectedBackground
 
 				for _, v in pairs(pagesFolder:GetChildren()) do
 					if v ~= NewPage and v.Visible == true then
@@ -502,7 +531,7 @@ function library:CreateWindow(windowName)
 						v.Visible = false
 					end
 				end
-				
+
 				NewPage.Visible = true
 				NewPage:TweenSize(UDim2.fromScale(1,1), Enum.EasingDirection.Out, Enum.EasingStyle.Linear, .5, true)
 			end)()
@@ -511,7 +540,7 @@ function library:CreateWindow(windowName)
 		NewPage.Size = UDim2.fromScale(1,0)
 		pagesFolder:GetChildren()[1].Visible = true
 		pagesFolder:GetChildren()[1].Size = UDim2.fromScale(1,1)
-		Tabs:GetChildren()[3].BackgroundColor3 = Color3.fromRGB(37, 39, 43)
+		Tabs:GetChildren()[3].BackgroundColor3 = themeTable.TabSelectedBackground
 
 		local elementHandler = {}
 		elementHandler.__index = elementHandler
@@ -555,7 +584,7 @@ function library:CreateWindow(windowName)
 
 			ButtonElement.Name = "ButtonElement"
 			ButtonElement.Parent = self.Parent
-			ButtonElement.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+			ButtonElement.BackgroundColor3 = themeTable.ButtonBackground
 			ButtonElement.BackgroundTransparency = 1.000
 			ButtonElement.ClipsDescendants = true
 			ButtonElement.Size = self.Size
@@ -564,28 +593,28 @@ function library:CreateWindow(windowName)
 
 			Button.Name = "Button"
 			Button.Parent = ButtonElement
-			Button.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+			Button.BackgroundColor3 = themeTable.ButtonBackground
 			Button.Size = UDim2.new(1, 0, 1, 0)
 			Button.Font = Enum.Font.SourceSansSemibold
 			Button.Text = ""
-			Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Button.TextColor3 = themeTable.TextColor
 			Button.TextSize = 18.000
 
 			ButtonCorner.CornerRadius = UDim.new(0, 5)
 			ButtonCorner.Name = "ButtonCorner"
 			ButtonCorner.Parent = Button
-			
+
 			TouchImage.Name = "TouchImage"
 			TouchImage.AnchorPoint = Vector2.new(0,.5)
 			TouchImage.Position = UDim2.new(0,3,.5,0)
-			TouchImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			TouchImage.BackgroundColor3 = themeTable.IconColor
 			TouchImage.BackgroundTransparency = 1.000
 			TouchImage.BorderSizePixel = 0
 			TouchImage.Size = UDim2.fromOffset(20, 20)
-			TouchImage.ImageColor3 = imageInfo and imageInfo.ImageColor or Color3.fromRGB(255,255,255)
+			TouchImage.ImageColor3 = imageInfo and imageInfo.ImageColor or themeTable.IconColor
 			TouchImage.Image = imageInfo and imageInfo.Id or "rbxassetid://9322846658"
 			TouchImage.Parent = Button
-			
+
 			ButName.Name = "ButName"
 			ButName.Parent = Button
 			ButName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -594,7 +623,7 @@ function library:CreateWindow(windowName)
 			ButName.Size = UDim2.new(1, -26, 1, 0)
 			ButName.Font = Enum.Font.GothamSemibold
 			ButName.Text = buttonName or "New Button"
-			ButName.TextColor3 = Color3.fromRGB(255, 255, 255)
+			ButName.TextColor3 = themeTable.TextColor
 			ButName.TextSize = 18.000
 			ButName.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -602,10 +631,10 @@ function library:CreateWindow(windowName)
 				coroutine.wrap(function()
 					createButtonAnimation(Button)
 
-					local tweenEnable = ts:Create(TouchImage, TweenInfo.new(.1), {ImageColor3 = Color3.fromRGB(60, 60, 60)})
+					local tweenEnable = ts:Create(TouchImage, TweenInfo.new(.1), {ImageColor3 = themeTable.PushedIconColor})
 					tweenEnable:Play()
 					tweenEnable.Completed:Wait()
-					local tweenDisable = ts:Create(TouchImage, TweenInfo.new(.1), {ImageColor3 = Color3.fromRGB(255,255,255)})
+					local tweenDisable = ts:Create(TouchImage, TweenInfo.new(.1), {ImageColor3 = themeTable.IconColor})
 					tweenDisable:Play()
 				end)()
 
@@ -625,7 +654,7 @@ function library:CreateWindow(windowName)
 
 			ToggleElement.Name = "ToggleElement"
 			ToggleElement.Parent = self.Parent
-			ToggleElement.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+			ToggleElement.BackgroundColor3 = themeTable.ButtonBackground
 			ToggleElement.BackgroundTransparency = 1
 			ToggleElement.ClipsDescendants = true
 			ToggleElement.Size = self.Size
@@ -634,14 +663,14 @@ function library:CreateWindow(windowName)
 
 			Button.Name = "Button"
 			Button.Parent = ToggleElement
-			Button.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+			Button.BackgroundColor3 = themeTable.ButtonBackground
 			Button.BackgroundTransparency = 0
 			Button.AutoButtonColor = true
 			Button.BorderSizePixel = 0
 			Button.Size = UDim2.new(1, 0, 1, 0)
 			Button.Font = Enum.Font.SourceSans
 			Button.Text = ""
-			Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Button.TextColor3 = themeTable.TextColor
 			Button.TextSize = 18.000
 
 			ButtonCorner.CornerRadius = UDim.new(0, 5)
@@ -651,22 +680,22 @@ function library:CreateWindow(windowName)
 			ToggleDisabled.Name = "ToggleDisabled"
 			ToggleDisabled.AnchorPoint = Vector2.new(0,.5)
 			ToggleDisabled.Position = UDim2.new(0,3,.5,0)
-			ToggleDisabled.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ToggleDisabled.BackgroundColor3 = themeTable.IconColor
 			ToggleDisabled.BackgroundTransparency = 1.000
 			ToggleDisabled.BorderSizePixel = 0
 			ToggleDisabled.Size = UDim2.fromOffset(20,20)
-			ToggleDisabled.ImageColor3 = Color3.fromRGB(255,255,255)
+			ToggleDisabled.ImageColor3 = themeTable.IconColor
 			ToggleDisabled.Image = imageInfo and imageInfo.Id or "rbxassetid://9323553784"
 			ToggleDisabled.Parent = Button
 
 			ToggleEnabled.Name = "ToggleEnabled"
 			ToggleEnabled.AnchorPoint = Vector2.new(0,.5)
 			ToggleEnabled.Position = UDim2.new(0,3,.5,0)
-			ToggleEnabled.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ToggleEnabled.BackgroundColor3 = themeTable.IconColor
 			ToggleEnabled.BackgroundTransparency = 1.000
 			ToggleEnabled.Size = UDim2.fromOffset(20,20)
 			ToggleEnabled.Image = imageInfo and imageInfo.Id or "rbxassetid://9323551028"
-			ToggleEnabled.ImageColor3 = imageInfo and imageInfo.ImageColor or Color3.fromRGB(0, 255, 0)
+			ToggleEnabled.ImageColor3 = imageInfo and imageInfo.ImageColor or themeTable.SelectedIconColor
 			ToggleEnabled.ImageTransparency = 1.000
 			ToggleEnabled.Parent = Button
 
@@ -678,7 +707,7 @@ function library:CreateWindow(windowName)
 			TogName.Size = UDim2.new(1, -26, 1, 0)
 			TogName.Font = Enum.Font.GothamSemibold
 			TogName.Text = toggleName or "New Toggle"
-			TogName.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TogName.TextColor3 = themeTable.TextColor
 			TogName.TextSize = 18.000
 			TogName.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -739,7 +768,7 @@ function library:CreateWindow(windowName)
 
 			TextBoxElement.Name = "TextBoxElement"
 			TextBoxElement.Parent = self.Parent
-			TextBoxElement.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+			TextBoxElement.BackgroundColor3 = themeTable.ButtonBackground
 			TextBoxElement.ClipsDescendants = true
 			TextBoxElement.Size = self.Size
 
@@ -747,24 +776,24 @@ function library:CreateWindow(windowName)
 
 			Button.Name = "Button"
 			Button.Parent = TextBoxElement
-			Button.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+			Button.BackgroundColor3 = themeTable.ButtonBackground
 			Button.BackgroundTransparency = 1.000
 			Button.Size = UDim2.new(1, 0, 1, 0)
 			Button.ZIndex = 2
 			Button.Font = Enum.Font.SourceSansSemibold
 			Button.Text = ""
-			Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Button.TextColor3 = themeTable.TextColor
 			Button.TextSize = 18.000
 
 			PencilImage.Name = "PencilImage"
 			PencilImage.AnchorPoint = Vector2.new(0,.5)
 			PencilImage.Position = UDim2.new(0,3,.5,0)
 			PencilImage.AnchorPoint = Vector2.new(0, 0.5)
-			PencilImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			PencilImage.BackgroundColor3 = themeTable.IconColor
 			PencilImage.BackgroundTransparency = 1.000
 			PencilImage.BorderSizePixel = 0
 			PencilImage.Size = UDim2.new(0,20,0,20)
-			PencilImage.ImageColor3 = imageInfo and imageInfo.ImageColor or Color3.fromRGB(255,255,255)
+			PencilImage.ImageColor3 = imageInfo and imageInfo.ImageColor or themeTable.IconColor
 			PencilImage.Image = imageInfo and imageInfo.Id or "rbxassetid://9323815021"
 			PencilImage.Parent = TextBoxElement
 
@@ -780,16 +809,16 @@ function library:CreateWindow(windowName)
 			TextName.Size = UDim2.new(0.7, -34, 1, 0)
 			TextName.Font = Enum.Font.GothamSemibold
 			TextName.Text = boxName or "New TextBox"
-			TextName.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextName.TextColor3 = themeTable.TextColor
 			TextName.TextSize = 18.000
 			TextName.TextXAlignment = Enum.TextXAlignment.Left
 
 			TextBox.Parent = TextBoxElement
 			TextBox.AnchorPoint = Vector2.new(1, 0.5)
-			TextBox.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+			TextBox.BackgroundColor3 = themeTable.ButtonBoxColor
 			TextBox.BorderSizePixel = 0
 			TextBox.Position = UDim2.new(1, -3, 0.5, 0)
-			TextBox.PlaceholderColor3 = Color3.fromRGB(255,255,255)
+			TextBox.PlaceholderColor3 = themeTable.ButtonBoxTextColor
 			TextBox.PlaceholderText = "Type Here!"
 			TextBox.Text = ""
 			TextBox.ZIndex = 999
@@ -797,7 +826,7 @@ function library:CreateWindow(windowName)
 			TextBox.ClearTextOnFocus = false
 			TextBox.Size = UDim2.new(.3, 0, 0.9, 0)
 			TextBox.Font = Enum.Font.GothamSemibold
-			TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextBox.TextColor3 = themeTable.TextColor
 			TextBox.TextSize = 12.000
 
 			ElementCorner_2.CornerRadius = UDim.new(0, 5)
@@ -830,9 +859,9 @@ function library:CreateWindow(windowName)
 
 			tbl = tbl or {}
 
-			local bgColor = tbl.BgColor or Color3.fromRGB(52,52,52)
+			local bgColor = tbl.BgColor or themeTable.LabelColor
 			local textSize = tbl.TextSize or 18
-			local textColor = tbl.TextColor or Color3.fromRGB(255,255,255)
+			local textColor = tbl.TextColor or themeTable.TextColor
 
 			LabelElement.Name = "LabelElement"
 			LabelElement.Parent = self.Parent
@@ -865,7 +894,7 @@ function library:CreateWindow(windowName)
 			LabelImage.BackgroundTransparency = 1.000
 			LabelImage.BorderSizePixel = 0
 			LabelImage.Size = UDim2.new(0, 20, 0, 20)
-			LabelImage.ImageColor3 = imageInfo and imageInfo.ImageColor or Color3.fromRGB(255,255,255)
+			LabelImage.ImageColor3 = imageInfo and imageInfo.ImageColor or themeTable.IconColor
 			LabelImage.Image = imageInfo and imageInfo.Id or "rbxassetid://9323772603"
 			LabelImage.Parent = LabelElement
 
@@ -894,7 +923,7 @@ function library:CreateWindow(windowName)
 
 			SliderElement.Name = "SliderElement"
 			SliderElement.Parent = self.Parent
-			SliderElement.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+			SliderElement.BackgroundColor3 = themeTable.ButtonBackground
 			SliderElement.ClipsDescendants = true
 			SliderElement.Size = self.Size
 
@@ -913,7 +942,7 @@ function library:CreateWindow(windowName)
 			SliderName.Size = UDim2.new(.475, -37, 1, 0)
 			SliderName.Font = Enum.Font.GothamSemibold
 			SliderName.Text = sliderName or "New Slider"
-			SliderName.TextColor3 = Color3.fromRGB(255, 255, 255)
+			SliderName.TextColor3 = themeTable.TextColor
 			SliderName.TextSize = 18.000
 			SliderName.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -924,25 +953,25 @@ function library:CreateWindow(windowName)
 			SliderImage.BackgroundTransparency = 1.000
 			SliderImage.BorderSizePixel = 0
 			SliderImage.Size = UDim2.new(0,20,0,20)
-			SliderImage.ImageColor3 = imageInfo and imageInfo.ImageColor or Color3.fromRGB(255,255,255)
+			SliderImage.ImageColor3 = imageInfo and imageInfo.ImageColor or themeTable.IconColor
 			SliderImage.Image = imageInfo and imageInfo.Id or "rbxassetid://9323139890"
 			SliderImage.Parent = SliderElement
 
 			Max.Name = "Max"
 			Max.Parent = SliderElement
 			Max.AnchorPoint = Vector2.new(1, 0.5)
-			Max.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+			Max.BackgroundColor3 = themeTable.ButtonBoxColor
 			Max.BorderSizePixel = 0
 			Max.Position = UDim2.new(1, -3, 0.5, 0)
 			Max.Size = UDim2.new(0.425, 0, 0.5, 0)
 			Max.Font = Enum.Font.SourceSans
 			Max.Text = ""
-			Max.TextColor3 = Color3.fromRGB(0, 0, 0)
+			Max.TextColor3 = themeTable.TextColor
 			Max.TextSize = 14.000
 
 			Bar.Name = "Bar"
 			Bar.Parent = Max
-			Bar.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+			Bar.BackgroundColor3 = themeTable.SelectedIconColor
 			Bar.BorderSizePixel = 0
 			Bar.Size = UDim2.new(0, 0, 1, 0)
 
@@ -956,13 +985,13 @@ function library:CreateWindow(windowName)
 
 			TextBox.Parent = SliderElement
 			TextBox.AnchorPoint = Vector2.new(1, 0.5)
-			TextBox.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+			TextBox.BackgroundColor3 = themeTable.ButtonBoxColor
 			TextBox.ClipsDescendants = true
 			TextBox.Position = UDim2.new(.575, -5, 0.5, 0)
 			TextBox.Size = UDim2.new(0.100000001, 0, 0.800000012, 0)
 			TextBox.Font = Enum.Font.GothamBold
 			TextBox.Text = "0"
-			TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextBox.TextColor3 = themeTable.ButtonBoxTextColor
 			TextBox.TextSize = 14.000
 
 			TextBoxCorner.CornerRadius = UDim.new(0, 5)
@@ -1055,7 +1084,7 @@ function library:CreateWindow(windowName)
 
 			DropdownElement.Name = "DropdownElement"
 			DropdownElement.Parent = self.Parent
-			DropdownElement.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+			DropdownElement.BackgroundColor3 = themeTable.ButtonBackground
 			DropdownElement.BackgroundTransparency = 1.000
 			DropdownElement.ClipsDescendants = true
 			DropdownElement.Size = self.Size
@@ -1064,13 +1093,13 @@ function library:CreateWindow(windowName)
 
 			DropdownButton.Name = "DropdownButton"
 			DropdownButton.Parent = DropdownElement
-			DropdownButton.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+			DropdownButton.BackgroundColor3 = themeTable.ButtonBackground
 			DropdownButton.Size = UDim2.new(1,0,1,0)
 			DropdownButton.ZIndex = 2
 			DropdownButton.Font = Enum.Font.SourceSansSemibold
 			DropdownButton.ClipsDescendants = true
 			DropdownButton.Text = ""
-			DropdownButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+			DropdownButton.TextColor3 = themeTable.TextColor
 			DropdownButton.TextSize = 18.000
 
 			ButtonCorner.CornerRadius = UDim.new(0, 5)
@@ -1080,11 +1109,11 @@ function library:CreateWindow(windowName)
 			DropdownImage.Name = "DropdownImage"
 			DropdownImage.AnchorPoint = Vector2.new(0,.5)
 			DropdownImage.Position = UDim2.new(0,3,.5,0)
-			DropdownImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			DropdownImage.BackgroundColor3 = themeTable.IconColor
 			DropdownImage.BackgroundTransparency = 1.000
 			DropdownImage.BorderSizePixel = 0
 			DropdownImage.Size = UDim2.new(0,20,0,20)
-			DropdownImage.ImageColor3 = imageInfo and imageInfo.ImageColor or Color3.fromRGB(255,255,255)
+			DropdownImage.ImageColor3 = imageInfo and imageInfo.ImageColor or themeTable.IconColor
 			DropdownImage.Image = imageInfo and imageInfo.Id or "rbxassetid://9324047489"
 			DropdownImage.Parent = DropdownButton
 
@@ -1096,7 +1125,7 @@ function library:CreateWindow(windowName)
 			DropdownName.Size = UDim2.new(1, -26, 1, 0)
 			DropdownName.Font = Enum.Font.GothamSemibold
 			DropdownName.Text = dropdownName or "New Dropdown"
-			DropdownName.TextColor3 = Color3.fromRGB(255, 255, 255)
+			DropdownName.TextColor3 = themeTable.TextColor
 			DropdownName.TextSize = 18.000
 			DropdownName.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -1113,12 +1142,12 @@ function library:CreateWindow(windowName)
 
 				OptionSelect.Name = "OptionSelect"
 				OptionSelect.Parent = DropdownElement
-				OptionSelect.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+				OptionSelect.BackgroundColor3 = themeTable.ButtonBackground
 				OptionSelect.Size = UDim2.new(0, 325, 0, 29)
 				OptionSelect.Font = Enum.Font.SourceSans
 				OptionSelect.ClipsDescendants = true
 				OptionSelect.Text = ""
-				OptionSelect.TextColor3 = Color3.fromRGB(0, 0, 0)
+				OptionSelect.TextColor3 = themeTable.TextColor
 				OptionSelect.TextSize = 14.000
 
 				UICorner.CornerRadius = UDim.new(0, 5)
@@ -1134,7 +1163,7 @@ function library:CreateWindow(windowName)
 				TextLabel.Size = UDim2.new(1, 0, 1, 0)
 				TextLabel.Font = Enum.Font.GothamSemibold
 				TextLabel.Text = tostring(v) or "Selection Name"
-				TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+				TextLabel.TextColor3 = themeTable.TextColor
 				TextLabel.TextSize = 18.000
 				TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -1144,16 +1173,16 @@ function library:CreateWindow(windowName)
 					callback(v)
 				end)
 			end
-			
+
 			if showNone then
 				OptionSelect.Name = "OptionSelect"
 				OptionSelect.Parent = DropdownElement
-				OptionSelect.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+				OptionSelect.BackgroundColor3 = themeTable.ButtonBackground
 				OptionSelect.Size = UDim2.new(0, 325, 0, 29)
 				OptionSelect.Font = Enum.Font.SourceSans
 				OptionSelect.ClipsDescendants = true
 				OptionSelect.Text = ""
-				OptionSelect.TextColor3 = Color3.fromRGB(0, 0, 0)
+				OptionSelect.TextColor3 = themeTable.TextColor
 				OptionSelect.TextSize = 14.000
 
 				UICorner.CornerRadius = UDim.new(0, 5)
@@ -1169,7 +1198,7 @@ function library:CreateWindow(windowName)
 				TextLabel.Size = UDim2.new(1, 0, 1, 0)
 				TextLabel.Font = Enum.Font.GothamSemibold
 				TextLabel.Text = "None"
-				TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+				TextLabel.TextColor3 = themeTable.TextColor
 				TextLabel.TextSize = 18.000
 				TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -1204,7 +1233,7 @@ function library:CreateWindow(windowName)
 			end)
 
 			local dropdownElementHandler = setmetatable({}, elementHandler)
-			
+
 			dropdownElementHandler.Parent = DropdownElement
 			dropdownElementHandler.Size = UDim2.fromOffset(325,29)
 			dropdownElementHandler.isDropdown = true
@@ -1224,7 +1253,7 @@ function library:CreateWindow(windowName)
 
 			KeybindElement.Name = "KeybindElement"
 			KeybindElement.Parent = self.Parent
-			KeybindElement.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+			KeybindElement.BackgroundColor3 = themeTable.ButtonBackground
 			KeybindElement.BackgroundTransparency = 1
 			KeybindElement.ClipsDescendants = true
 			KeybindElement.Size = self.Size
@@ -1233,14 +1262,14 @@ function library:CreateWindow(windowName)
 
 			Button.Name = "Button"
 			Button.Parent = KeybindElement
-			Button.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+			Button.BackgroundColor3 = themeTable.ButtonBackground
 			Button.BackgroundTransparency = 0
 			Button.Size = UDim2.new(1, 0, 1, 0)
 			Button.AutoButtonColor = true
 			Button.ZIndex = 1
 			Button.Font = Enum.Font.SourceSansSemibold
 			Button.Text = ""
-			Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Button.TextColor3 = themeTable.TextColor
 			Button.TextSize = 18.000
 
 			KeybindName.Name = "KeybindName"
@@ -1251,7 +1280,7 @@ function library:CreateWindow(windowName)
 			KeybindName.Size = UDim2.new(.8, -32, 1, 0)
 			KeybindName.Font = Enum.Font.GothamSemibold
 			KeybindName.Text = keybindName or "New Keybind"
-			KeybindName.TextColor3 = Color3.fromRGB(255, 255, 255)
+			KeybindName.TextColor3 = themeTable.TextColor
 			KeybindName.TextSize = 18.000
 			KeybindName.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -1262,7 +1291,7 @@ function library:CreateWindow(windowName)
 			KeyboardImage.BackgroundTransparency = 1.000
 			KeyboardImage.BorderSizePixel = 0
 			KeyboardImage.Size = UDim2.new(0,20,0,20)
-			KeyboardImage.ImageColor3 = imageInfo and imageInfo.ImageColor or Color3.fromRGB(255,255,255)
+			KeyboardImage.ImageColor3 = imageInfo and imageInfo.ImageColor or themeTable.IconColor
 			KeyboardImage.Image = imageInfo and imageInfo.Id or "rbxassetid://9323980256"
 			KeyboardImage.Parent = Button
 
@@ -1276,14 +1305,14 @@ function library:CreateWindow(windowName)
 			KeybindText.Size = UDim2.new(0.2, 0, 1, 0)
 			KeybindText.Font = Enum.Font.GothamSemibold
 			KeybindText.Text = defaultKeybind.Name or "F"
-			KeybindText.TextColor3 = Color3.fromRGB(255, 255, 255)
+			KeybindText.TextColor3 = themeTable.TextColor
 			KeybindText.TextSize = 18.000
 			KeybindText.TextXAlignment = Enum.TextXAlignment.Right
 
 			ElementCorner.CornerRadius = UDim.new(0, 5)
 			ElementCorner.Name = "ElementCorner"
 			ElementCorner.Parent = Button
-			
+
 			Button.MouseButton1Click:Connect(function()
 				createButtonAnimation(Button)
 
@@ -1305,7 +1334,235 @@ function library:CreateWindow(windowName)
 				end
 			end)
 		end
+		
+		function elementHandler:ColorWheel(colorWheelName, callback, imageInfo)
+			local ColorWheelElement = Instance.new("Frame")
+			local Button = Instance.new("TextButton")
+			local ColorWheelName = Instance.new("TextLabel")
+			local PaintbrushImage = Instance.new("ImageLabel")
+			local ElementCorner = Instance.new("UICorner")
+			local CornerHider = Instance.new("Frame")
+			local ColorSelectionFrame = Instance.new("Frame")
+			local Wheel = Instance.new("ImageButton")
+			local Selector = Instance.new("ImageLabel")
+			local ValueButton = Instance.new("TextButton")
+			local UIGradient = Instance.new("UIGradient")
+			local ValueSliderBar = Instance.new("Frame")
+			local UICorner = Instance.new("UICorner")
+			local ColorSampleFrame = Instance.new("Frame")
+			local elementListLayout = Instance.new("UIListLayout")
+			
+			ColorWheelElement.Name = "ColorWheelElement"
+			ColorWheelElement.Parent = self.Parent
+			ColorWheelElement.BackgroundColor3 = themeTable.ButtonBackground
+			ColorWheelElement.BackgroundTransparency = 1.000
+			ColorWheelElement.ClipsDescendants = true
+			ColorWheelElement.Size = self.Size
+			
+			findOffset(ColorWheelElement, self.Parent, self.isDropdown)
+			
+			Button.Name = "Button"
+			Button.Parent = ColorWheelElement
+			Button.BackgroundColor3 = themeTable.ButtonBackground
+			Button.Size = UDim2.fromScale(1,1)
+			Button.Font = Enum.Font.SourceSansSemibold
+			Button.Text = ""
+			Button.TextColor3 = themeTable.TextColor
+			Button.TextSize = 18.000
 
+			ColorWheelName.Name = "ColorWheelName"
+			ColorWheelName.Parent = Button
+			ColorWheelName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ColorWheelName.BackgroundTransparency = 1.000
+			ColorWheelName.Position = UDim2.new(0, 26, 0, 0)
+			ColorWheelName.Size = UDim2.new(1, -26, 1, 0)
+			ColorWheelName.Font = Enum.Font.GothamSemibold
+			ColorWheelName.Text = "Color Wheel Name"
+			ColorWheelName.TextColor3 = themeTable.TextColor
+			ColorWheelName.TextSize = 18.000
+			ColorWheelName.TextXAlignment = Enum.TextXAlignment.Left
+
+			PaintbrushImage.Name = "PaintbrushImage"
+			PaintbrushImage.Parent = Button
+			PaintbrushImage.AnchorPoint = Vector2.new(0, 0.5)
+			PaintbrushImage.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			PaintbrushImage.BackgroundTransparency = 1.000
+			PaintbrushImage.BorderSizePixel = 0
+			PaintbrushImage.Position = UDim2.new(0, 3, 0.5, 0)
+			PaintbrushImage.ImageColor3 = imageInfo and imageInfo.ImageColor or themeTable.IconColor
+			PaintbrushImage.Size = UDim2.new(0, 20, 0, 20)
+			PaintbrushImage.Image = imageInfo and imageInfo.Id or "rbxassetid://9508785673"
+
+			ElementCorner.CornerRadius = UDim.new(0, 5)
+			ElementCorner.Name = "ElementCorner"
+			ElementCorner.Parent = Button
+
+			ColorSelectionFrame.Name = "ColorSelectionFrame"
+			ColorSelectionFrame.Parent = ColorWheelElement
+			ColorSelectionFrame.BackgroundColor3 = themeTable.ButtonBackground
+			ColorSelectionFrame.BorderSizePixel = 0
+			ColorSelectionFrame.ZIndex = 0
+			ColorSelectionFrame.Size = UDim2.new(0.600000024, 0, 0, 170)
+
+			CornerHider.Name = "CornerHider"
+			CornerHider.Parent = ColorSelectionFrame
+			CornerHider.AnchorPoint = Vector2.new(0, 0)
+			CornerHider.BackgroundColor3 = themeTable.ButtonBackground
+			CornerHider.BorderSizePixel = 0
+			CornerHider.Position = UDim2.new(0, 0, 0, -7)
+			CornerHider.Size = UDim2.new(0.0500000007, 0, 0.100000001, 0)
+			CornerHider.Visible = false
+
+			Wheel.Name = "Wheel"
+			Wheel.Parent = ColorSelectionFrame
+			Wheel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			Wheel.BackgroundTransparency = 1.000
+			Wheel.Position = UDim2.new(0, 3, 0, 0)
+			Wheel.Size = UDim2.new(0, 125, 0, 125)
+			Wheel.Image = "rbxassetid://2849458409"
+
+			Selector.Name = "Selector"
+			Selector.Parent = Wheel
+			Selector.AnchorPoint = Vector2.new(0.5, 0.5)
+			Selector.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			Selector.BackgroundTransparency = 1.000
+			Selector.Position = UDim2.new(0.5, 0, 0.5, 0)
+			Selector.Size = UDim2.new(0, 10, 0, 10)
+			Selector.Image = "rbxassetid://9476341235"
+
+			ValueButton.Name = "ValueButton"
+			ValueButton.Parent = ColorSelectionFrame
+			ValueButton.AnchorPoint = Vector2.new(0, 1)
+			ValueButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ValueButton.BorderSizePixel = 0
+			ValueButton.Position = UDim2.new(0, 3, 1, -3)
+			ValueButton.Size = UDim2.new(1, -6, 0.150000006, -3)
+			ValueButton.Font = Enum.Font.SourceSans
+			ValueButton.Text = ""
+			ValueButton.TextColor3 = themeTable.TextColor
+			ValueButton.TextSize = 14.000
+
+			UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
+			UIGradient.Parent = ValueButton
+			
+			ValueSliderBar.Name = "ValueSliderBar"
+			ValueSliderBar.Parent = ValueButton
+			ValueSliderBar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ValueSliderBar.Size = UDim2.new(0, 5, 1, 0)
+
+			UICorner.Parent = ValueSliderBar
+			
+			ColorSampleFrame.Name = "ColorSampleFrame"
+			ColorSampleFrame.Parent = ColorSelectionFrame
+			ColorSampleFrame.AnchorPoint = Vector2.new(1, 0)
+			ColorSampleFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ColorSampleFrame.BorderSizePixel = 0
+			ColorSampleFrame.Position = UDim2.new(1, -3, 0, 3)
+			ColorSampleFrame.Size = UDim2.new(0, 30, 0, 30)
+
+			elementListLayout.Name = "elementListLayout"
+			elementListLayout.Parent = ColorWheelElement
+			elementListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+			
+			local wheelDown = false
+			local sliderDown = false
+			local hue, saturation, value = 0,0,0
+			
+			local isOpen = false
+			local offsetOriginialSize = offsetSizesTable[ColorWheelElement.Name]
+			local uisConnection
+			
+			Button.Size = UDim2.new(0,Button.AbsoluteSize.X,0,Button.AbsoluteSize.Y)
+			Button.MouseButton1Click:Connect(function()
+				createButtonAnimation(Button)
+				if isOpen then
+					if uisConnection then
+						uisConnection:Disconnect()
+					end
+					CornerHider.Visible = false
+					ts:Create(ColorWheelElement, TweenInfo.new(.2, Enum.EasingStyle.Linear), {Size = offsetOriginialSize}):Play()
+				else
+					uisConnection = uis.InputEnded:Connect(function(input)
+						if input.UserInputType == Enum.UserInputType.MouseButton1 then
+							if wheelDown or sliderDown then
+								wheelDown = false
+								sliderDown = false
+							end
+						end
+					end)
+					CornerHider.Visible = true
+					ts:Create(ColorWheelElement, TweenInfo.new(.2, Enum.EasingStyle.Linear), {Size = UDim2.new(0,offsetOriginialSize.X.Offset,0,offsetOriginialSize.Y.Offset + ColorSelectionFrame.Size.Y.Offset)}):Play()
+				end
+				isOpen = not isOpen
+			end)
+			
+			local function toPolar(v)
+				return v.Magnitude, math.atan2(v.Y, v.X)
+			end
+
+			local function radToDeg(x)
+				return ((x + math.pi) / (2 * math.pi)) * 360
+			end
+			
+			local function update()
+				local color = Color3.fromHSV(hue, saturation, value)
+
+				ColorSampleFrame.BackgroundColor3 = color
+				Selector.ImageColor3 = color
+				ValueSliderBar.BackgroundColor3 = Color3.fromHSV(0,0,-value)
+				UIGradient.Color = ColorSequence.new({
+					ColorSequenceKeypoint.new(0, Color3.fromHSV(0,0,0)),
+					ColorSequenceKeypoint.new(1, Color3.fromHSV(hue, saturation, 1))
+				})
+				callback(color)
+			end
+			
+			local function updateSlider(input)
+				local relativePos = input.X - ValueButton.AbsolutePosition.X
+				local posOnFrame = math.clamp(relativePos, 0, ValueButton.AbsoluteSize.X - ValueSliderBar.AbsoluteSize.X)
+
+				value = 0 + (posOnFrame / (ValueButton.AbsoluteSize.X - ValueSliderBar.AbsoluteSize.X))
+				ValueSliderBar.Position = UDim2.fromOffset(posOnFrame, 0)
+				update()
+			end
+			
+			local function updateWheel(input)
+				local r = Wheel.AbsoluteSize.X/2
+				local d = Vector2.new(input.X, input.Y) - Wheel.AbsolutePosition - Wheel.AbsoluteSize/2
+
+				if d:Dot(d) > r*r then
+					d = d.Unit * r
+				end
+
+				Selector.Position = UDim2.new(.5,d.X,.5,d.Y)
+				local len, phi = toPolar(d * Vector2.new(1, -1))
+				hue, saturation = radToDeg(phi)/360, math.clamp(len / r,0,1)
+				update()
+			end
+			
+			ValueButton.MouseButton1Down:Connect(function()
+				sliderDown = true
+				updateSlider(mouse)
+			end)
+			
+			ValueButton.MouseMoved:Connect(function()
+				if sliderDown then
+					updateSlider(mouse)
+				end
+			end)
+			
+			Wheel.MouseButton1Down:Connect(function()
+				wheelDown = true
+				updateWheel(mouse)
+			end)
+
+			Wheel.MouseMoved:Connect(function()
+				if wheelDown then
+					updateWheel(mouse)
+				end
+			end)
+		end
+		
 		return elementHandler
 	end
 	return tabHandler
