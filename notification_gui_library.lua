@@ -623,8 +623,12 @@ function Notification.new(notifType: string, heading: string, body: string, auto
         local infoFrame = notif.templateFrame.informationFrame
         local requiredHeadingSize = txtS:GetTextSize(infoFrame.headingText.Text, infoFrame.headingText.TextSize, infoFrame.headingText.Font, Vector2.new(10000,10000)).X 
         local requiredBodySize = txtS:GetTextSize(infoFrame.bodyText.Text, infoFrame.bodyText.TextSize, infoFrame.bodyText.Font, Vector2.new(10000,10000)).X   
-        assert(requiredHeadingSize + 45 + 25 < notifsHolderFrame.AbsoluteSize.X, "Heading size is too long")
-        assert(requiredBodySize + 45 + 25 < notifsHolderFrame.AbsoluteSize.X, "Body size is too long")
+        if requiredHeadingSize + 45 + 25 > notifsHolderFrame.AbsoluteSize.X then
+            warn("Heading size is too long (Notification Library)")
+        end
+        if requiredBodySize + 45 + 25 > notifsHolderFrame.AbsoluteSize.X then
+            warn("Body size is too long (Notification Library)")
+        end
     end
 
     local function openNotif(): nil
