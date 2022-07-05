@@ -1563,6 +1563,153 @@ function library:CreateWindow(windowName, inputedTheme)
 			end)
 		end
 		
+		function elementHandler:SearchBar(searchBarFillerText, searchElementsTable, callback, imageInfo)
+		    local SearchElement = Instance.new("Frame")
+		    local ScrollingFrame = Instance.new("ScrollingFrame")
+		    local ScrollingFrameUIListLayout = Instance.new("UIListLayout")
+		    local ScrollingFrameUIPadding = Instance.new("UIPadding")
+		    local SearchElementTemplate = Instance.new("TextButton")
+		    local UIPadding = Instance.new("UIPadding")
+		    local UICorner = Instance.new("UICorner")
+		    local SearchElementBackground = Instance.new("Frame")
+		    local SearchBox = Instance.new("TextBox")
+		    local SearchImage = Instance.new("ImageLabel")
+		    local SearchElementBackgroundCorner = Instance.new("UICorner")
+
+		    callback = callback or function() end
+		    searchElementsTable = searchElementsTable or {}
+
+		    SearchElement.Name = "SearchElement"
+		    SearchElement.Parent = self.Parent
+		    SearchElement.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+		    SearchElement.BackgroundTransparency = 1.000
+		    SearchElement.BorderSizePixel = 0
+		    SearchElement.ClipsDescendants = true
+		    SearchElement.Size = self.Size
+
+		    findOffset(SearchElement, self.Parent, self.isDropdown)
+
+		    ScrollingFrame.Parent = SearchElement
+		    ScrollingFrame.Active = true
+		    ScrollingFrame.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+		    ScrollingFrame.BackgroundTransparency = 1.000
+		    ScrollingFrame.BorderSizePixel = 0
+		    ScrollingFrame.Position = UDim2.new(0, 0, 0, SearchElement.Size.Y.Offset)
+		    ScrollingFrame.Size = UDim2.new(0.7, 0, 0, 233)
+		    ScrollingFrame.ScrollBarThickness = 0
+
+		    ScrollingFrameUIListLayout.Name = "ScrollingFrameUIListLayout"
+		    ScrollingFrameUIListLayout.Parent = ScrollingFrame
+		    ScrollingFrameUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		    ScrollingFrameUIListLayout.Padding = UDim.new(0, 3)
+
+		    ScrollingFrameUIPadding.Name = "ScrollingFrameUIPadding"
+		    ScrollingFrameUIPadding.Parent = ScrollingFrame
+		    ScrollingFrameUIPadding.PaddingBottom = UDim.new(0, 3)
+		    ScrollingFrameUIPadding.PaddingRight = UDim.new(0, 3)
+		    ScrollingFrameUIPadding.PaddingTop = UDim.new(0, 3)
+
+		    SearchElementTemplate.Name = "SearchElementTemplate"
+		    SearchElementTemplate.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+		    SearchElementTemplate.BorderSizePixel = 0
+		    SearchElementTemplate.Size = UDim2.new(1, 0, 0, 20)
+		    SearchElementTemplate.Font = Enum.Font.GothamMedium
+		    SearchElementTemplate.Text = ""
+		    SearchElementTemplate.TextColor3 = Color3.fromRGB(255, 255, 255)
+		    SearchElementTemplate.TextSize = 16.000
+		    SearchElementTemplate.TextXAlignment = Enum.TextXAlignment.Left
+		    SearchElementTemplate.ClipsDescendants = true
+
+		    UIPadding.Parent = SearchElementTemplate
+		    UIPadding.PaddingLeft = UDim.new(0, 4)
+
+		    UICorner.CornerRadius = UDim.new(0, 5)
+		    UICorner.Parent = SearchElementTemplate
+
+		    SearchElementBackground.Name = "SearchElementBackground"
+		    SearchElementBackground.Parent = SearchElement
+		    SearchElementBackground.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+		    SearchElementBackground.Size = SearchElement.Size
+
+		    SearchBox.Name = "SearchBox"
+		    SearchBox.Parent = SearchElementBackground
+		    SearchBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		    SearchBox.BackgroundTransparency = 1.000
+		    SearchBox.BorderSizePixel = 0
+		    SearchBox.Position = UDim2.new(0, 26, 0, 0)
+		    SearchBox.Size = UDim2.new(1, -26, 0, 28)
+		    SearchBox.Font = Enum.Font.GothamMedium
+		    SearchBox.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
+		    SearchBox.PlaceholderText = "Click to search..."
+		    SearchBox.Text = ""
+		    SearchBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+		    SearchBox.TextSize = 18.000
+		    SearchBox.TextXAlignment = Enum.TextXAlignment.Left
+
+		    SearchImage.Name = "SearchImage"
+		    SearchImage.Parent = SearchElementBackground
+		    SearchImage.AnchorPoint = Vector2.new(0, 0.5)
+		    SearchImage.BackgroundColor3 = themeTable.IconColor
+		    SearchImage.BackgroundTransparency = 1.000
+		    SearchImage.BorderSizePixel = 0
+		    SearchImage.Position = UDim2.new(0, 3, 0, 14)
+		    SearchImage.Size = UDim2.new(0, 20, 0, 20)
+		    SearchImage.ImageColor3 = imageInfo and imageInfo.ImageColor or themeTable.IconColor
+		    SearchImage.Image = imageInfo and imageInfo.Id or "rbxassetid://10117636771"
+
+		    SearchElementBackgroundCorner.CornerRadius = UDim.new(0, 5)
+		    SearchElementBackgroundCorner.Name = "SearchElementBackgroundCorner"
+		    SearchElementBackgroundCorner.Parent = SearchElementBackground
+
+		    ScrollingFrameUIListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+			if ScrollingFrame.AbsoluteCanvasSize.Y < (ScrollingFrameUIListLayout.AbsoluteContentSize.Y + ScrollingFrameUIPadding.PaddingTop.Offset + ScrollingFrameUIPadding.PaddingBottom.Offset) then
+			    ScrollingFrame.CanvasSize = UDim2.fromOffset(0, ScrollingFrameUIListLayout.AbsoluteContentSize.Y + ScrollingFrameUIPadding.PaddingTop.Offset + ScrollingFrameUIPadding.PaddingBottom.Offset)
+			end
+		    end)
+
+		    for _, elementText in ipairs(searchElementsTable) do
+			local elementClone = SearchElementTemplate:Clone()
+			elementClone.Text = elementText
+			elementClone.Parent = ScrollingFrame
+
+			elementClone.MouseButton1Click:Connect(function()
+			    coroutine.wrap(function()
+				createButtonAnimation(elementClone)
+				callback(elementClone.Text)
+			    end)()
+			end)
+		    end
+
+		    local originialSearchElementSize = SearchElement.Size
+
+		    SearchBox.Focused:Connect(function()
+			local openScrollingFrameTween = ts:Create(SearchElement, TweenInfo.new(.1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {Size = UDim2.new(1,0,0,ScrollingFrame.Size.Y.Offset + SearchElement.Size.Y.Offset)})
+			openScrollingFrameTween:Play()
+		    end)
+
+		    SearchBox.FocusLost:Connect(function()
+			if SearchBox.Text == "" then
+			    local closeScrollingFrameTween = ts:Create(SearchElement, TweenInfo.new(.1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {Size = originialSearchElementSize})
+			    closeScrollingFrameTween:Play()
+			end
+		    end)
+
+		    SearchBox:GetPropertyChangedSignal("Text"):Connect(function()
+			for _, txtElement in pairs(ScrollingFrame:GetChildren()) do
+			    if not txtElement:IsA("TextButton") then continue end
+			    if txtElement.Text:find(SearchBox.Text, 1, true) then
+				if txtElement.Visible == false then
+				    txtElement.Visible = true
+				end
+			    else
+				if txtElement.Visible then
+				    txtElement.Visible = false
+				end
+			    end
+			end
+		    end)
+		end
+		
 		return elementHandler
 	end
 	return tabHandler
