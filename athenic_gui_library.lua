@@ -1697,7 +1697,7 @@ function library:CreateWindow(windowName, inputedTheme)
 		    SearchBox:GetPropertyChangedSignal("Text"):Connect(function()
 			for _, txtElement in pairs(ScrollingFrame:GetChildren()) do
 			    if not txtElement:IsA("TextButton") then continue end
-			    if txtElement.Text:lower():find(SearchBox.Text, 1, true) then
+			    if txtElement.Text:lower():find(SearchBox.Text:lower(), 1, true) then
 				if txtElement.Visible == false then
 				    txtElement.Visible = true
 				end
