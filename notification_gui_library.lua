@@ -84,10 +84,6 @@ closeSound.Volume = 1
 closeSound.SoundId = "rbxassetid://9128519965"
 closeSound.Parent = ss
 
-if syn.protect_gui then
-    syn.protect_gui(notifications)
-end
-
 notifications.Name = "notifications"
 notifications.Parent = game:GetService("CoreGui")
 notifications.ZIndexBehavior = Enum.ZIndexBehavior.Global
