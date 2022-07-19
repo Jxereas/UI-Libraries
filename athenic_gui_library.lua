@@ -68,10 +68,6 @@ function library:CreateWindow(windowName, inputedTheme)
 	local MaximizeButton = Instance.new("ImageButton")
 	local MaximizeAspect = Instance.new("UIAspectRatioConstraint")
 	local Sample = Instance.new("ImageLabel")
-
-	if syn.protect_gui then
-		syn.protect_gui(UILibrary)
-	end
 	
 	UILibrary.Name = "UILibrary"
 	UILibrary.Parent = game:GetService("CoreGui")
