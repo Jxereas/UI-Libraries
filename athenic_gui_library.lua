@@ -69,6 +69,10 @@ function library:CreateWindow(windowName, inputedTheme)
 	local MaximizeAspect = Instance.new("UIAspectRatioConstraint")
 	local Sample = Instance.new("ImageLabel")
 
+	if syn.protect_gui then
+		syn.protect_gui(UILibrary)
+	end
+	
 	UILibrary.Name = "UILibrary"
 	UILibrary.Parent = game:GetService("CoreGui")
 	UILibrary.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
