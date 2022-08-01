@@ -1796,6 +1796,7 @@ function library:CreateWindow(windowName, inputedTheme)
 
 		    SearchBox.FocusLost:Connect(function()
 			if SearchBox.Text == "" then
+			    task.wait(.1)
 			    local closeScrollingFrameTween = ts:Create(SearchElement, TweenInfo.new(.1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {Size = originialSearchElementSize})
 			    closeScrollingFrameTween:Play()
 			end
