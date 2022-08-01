@@ -1747,7 +1747,7 @@ function library:CreateWindow(windowName, inputedTheme)
 		    SearchBox.Size = UDim2.new(1, -26, 0, 28)
 		    SearchBox.Font = Enum.Font.GothamMedium
 		    SearchBox.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
-		    SearchBox.PlaceholderText = "Click to search..."
+		    SearchBox.PlaceholderText = searchBarFillerText or "Click to search..."
 		    SearchBox.Text = ""
 		    SearchBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 		    SearchBox.TextSize = 18.000
