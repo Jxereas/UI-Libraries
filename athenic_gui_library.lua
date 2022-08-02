@@ -738,10 +738,10 @@ function library:CreateWindow(windowName, inputedTheme)
 				coroutine.wrap(function()
 					createButtonAnimation(Button)
 
-					local tweenEnable = ts:Create(TouchImage, TweenInfo.new(.1), {ImageColor3 = themeTable.PushedIconColor})
+					local tweenEnable = ts:Create(TouchImage, TweenInfo.new(.1), {ImageColor3 = imageInfo and imageInfo.ImageColor or themeTable.PushedIconColor})
 					tweenEnable:Play()
 					tweenEnable.Completed:Wait()
-					local tweenDisable = ts:Create(TouchImage, TweenInfo.new(.1), {ImageColor3 = themeTable.IconColor})
+					local tweenDisable = ts:Create(TouchImage, TweenInfo.new(.1), {ImageColor3 = imageInfo and imageInfo.ImageColor or themeTable.IconColor})
 					tweenDisable:Play()
 				end)()
 
