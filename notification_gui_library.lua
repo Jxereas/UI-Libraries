@@ -827,6 +827,33 @@ function Notification:delete()
     end)()
 end
 
+function Notification:changeColor(primary: Color3, secondary: Color3, textColor: Color3): nil
+    coroutine.wrap(function()
+        if not self.Instance or not self.Instance:FindFirstChild("templateFrame") then return end
+        local templateFrame = self.Instance.templateFrame
+        
+        if primary then
+            templateFrame.BackgroundColor3 = primary
+            templateFrame.cornerHidingFrame.BackgroundColor3 = primary
+            templateFrame.severityFrame.hideSeverityCornerFrame.BackgroundColor3 = primary
+        end
+
+        if secondary then
+            templateFrame.severityFrame.BackgroundColor3 = secondary
+
+            if self.Type ~= "message" then
+                templateFrame.image.ImageColor3 = secondary
+                templateFrame.closeButton.ImageColor3 = secondary
+            end
+        end
+
+        if textColor then
+            templateFrame.informationFrame.headingText.TextColor3 = textColor
+            templateFrame.informationFrame.bodyText.TextColor3 = textColor
+        end
+    end)()
+end
+
 scaleNotifHolderMaxNotifs()
 notifHolderListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(deleteNotifsOutsideFrame)
 return Notification
