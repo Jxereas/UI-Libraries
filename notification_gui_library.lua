@@ -276,6 +276,7 @@ errorHeadingText.Text = "Error"
 errorHeadingText.TextColor3 = Color3.fromRGB(0, 0, 0)
 errorHeadingText.TextSize = 14
 errorHeadingText.TextXAlignment = Enum.TextXAlignment.Left
+errorHeadingText.TextYAlignment = Enum.TextYAlignment.Bottom
 
 errorBodyText.Name = "bodyText"
 errorBodyText.Parent = errorInformationFrame
@@ -291,6 +292,7 @@ errorBodyText.TextColor3 = Color3.fromRGB(0, 0, 0)
 errorBodyText.TextSize = 14
 errorBodyText.TextWrapped = true
 errorBodyText.TextXAlignment = Enum.TextXAlignment.Left
+errorBodyText.TextYAlignment = Enum.TextYAlignment.Top
 
 errorCornerHidingFrame.Name = "cornerHidingFrame"
 errorCornerHidingFrame.Parent = errorTemplateFrame
@@ -372,6 +374,7 @@ infoHeadingText.Text = "Information"
 infoHeadingText.TextColor3 = Color3.fromRGB(0, 0, 0)
 infoHeadingText.TextSize = 14
 infoHeadingText.TextXAlignment = Enum.TextXAlignment.Left
+infoHeadingText.TextYAlignment = Enum.TextYAlignment.Bottom
 
 infoBodyText.Name = "bodyText"
 infoBodyText.Parent = infoInformationFrame
@@ -387,6 +390,8 @@ infoBodyText.TextColor3 = Color3.fromRGB(0, 0, 0)
 infoBodyText.TextSize = 14
 infoBodyText.TextWrapped = true
 infoBodyText.TextXAlignment = Enum.TextXAlignment.Left
+infoBodyText.TextYAlignment = Enum.TextYAlignment.Top
+
 
 infoCornerHidingFrame.Name = "cornerHidingFrame"
 infoCornerHidingFrame.Parent = infoTemplateFrame
@@ -463,6 +468,7 @@ messageHeadingText.Text = "Custom message"
 messageHeadingText.TextColor3 = Color3.fromRGB(0, 0, 0)
 messageHeadingText.TextSize = 14
 messageHeadingText.TextXAlignment = Enum.TextXAlignment.Left
+messageHeadingText.TextYAlignment = Enum.TextYAlignment.Bottom
 
 messageBodyText.Name = "bodyText"
 messageBodyText.Parent = messageInformationFrame
@@ -478,6 +484,7 @@ messageBodyText.TextColor3 = Color3.fromRGB(0, 0, 0)
 messageBodyText.TextSize = 14
 messageBodyText.TextWrapped = true
 messageBodyText.TextXAlignment = Enum.TextXAlignment.Left
+messageBodyText.TextYAlignment = Enum.TextYAlignment.Top
 
 messageCornerHidingFrame.Name = "cornerHidingFrame"
 messageCornerHidingFrame.Parent = messageTemplateFrame
@@ -562,6 +569,7 @@ successHeadingText.Text = "Success"
 successHeadingText.TextColor3 = Color3.fromRGB(0, 0, 0)
 successHeadingText.TextSize = 14
 successHeadingText.TextXAlignment = Enum.TextXAlignment.Left
+successHeadingText.TextYAlignment = Enum.TextYAlignment.Bottom
 
 successBodyText.Name = "bodyText"
 successBodyText.Parent = successInformationFrame
@@ -577,6 +585,7 @@ successBodyText.TextColor3 = Color3.fromRGB(0, 0, 0)
 successBodyText.TextSize = 14
 successBodyText.TextWrapped = true
 successBodyText.TextXAlignment = Enum.TextXAlignment.Left
+successBodyText.TextYAlignment = Enum.TextYAlignment.Top
 
 successCornerHidingFrame.Name = "cornerHidingFrame"
 successCornerHidingFrame.Parent = successTemplateFrame
@@ -661,6 +670,7 @@ warningHeadingText.Text = "Warning"
 warningHeadingText.TextColor3 = Color3.fromRGB(0, 0, 0)
 warningHeadingText.TextSize = 14
 warningHeadingText.TextXAlignment = Enum.TextXAlignment.Left
+warningHeadingText.TextYAlignment = Enum.TextYAlignment.Bottom
 
 warningBodyText.Name = "bodyText"
 warningBodyText.Parent = warningInformationFrame
@@ -676,6 +686,7 @@ warningBodyText.TextColor3 = Color3.fromRGB(0, 0, 0)
 warningBodyText.TextSize = 14
 warningBodyText.TextWrapped = true
 warningBodyText.TextXAlignment = Enum.TextXAlignment.Left
+warningBodyText.TextYAlignment = Enum.TextYAlignment.Top
 
 warningCornerHidingFrame.Name = "cornerHidingFrame"
 warningCornerHidingFrame.Parent = warningTemplateFrame
