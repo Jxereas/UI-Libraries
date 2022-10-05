@@ -840,10 +840,10 @@ function Notification:changeColor(primary: Color3, secondary: Color3, textColor:
 
         if secondary then
             templateFrame.severityFrame.BackgroundColor3 = secondary
-
+            templateFrame.closeButton.ImageColor3 = secondary
+            
             if self.Type ~= "message" then
                 templateFrame.image.ImageColor3 = secondary
-                templateFrame.closeButton.ImageColor3 = secondary
             end
         end
 
