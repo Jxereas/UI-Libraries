@@ -2658,6 +2658,8 @@ function elementHandler:Slider(sliderName: string, callback, maximumValue: numbe
 		if enterPressed then
 			local enteredNum = tonumber(sliderInstance.TextGrouping.NumberText.Text)
 			if typeof(enteredNum) == "number" and enteredNum >= minimumValue and enteredNum <= maximumValue then
+				local absPos = sliderBar.AbsolutePosition
+				local absSize = sliderBar.Parent.EmptySliderBackground.AbsoluteSize
 				local percentOfBarFilled = enteredNum / absSize.X
 				sliderValue = enteredNum
 				sliderInstance.TextGrouping.NumberText.Text = math.round(sliderValue)
