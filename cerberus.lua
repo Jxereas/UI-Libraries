@@ -1922,7 +1922,7 @@ end
 
 --Add zindex var to determine which window goes over which
 --Add var to only have one window open at a time allowed
-function Library.new(windowName: string, constrainToScreen: boolean?): table
+function Library.new(windowName: string, constrainToScreen: boolean?, width: number?, height: number?, visibilityKeybind: string?, backgroundImageId: string?): table
 	local window = setmetatable({}, windowHandler) -- remove elementhandler from window hanlers index?
 	local windowInstance = originalElements.Window:Clone()
 	local startDragMousePos
@@ -1935,6 +1935,15 @@ function Library.new(windowName: string, constrainToScreen: boolean?): table
 	local heading = background.Heading
 	local buttonHolder = heading.ButtonHolder
 	local holder = background.Holder
+
+	local function getMatchingKeyCodeFromName(name: string)
+		if not name then return end
+		for i, keycode in pairs(Enum.KeyCode:GetEnumItems()) do
+			if keycode.Name:lower() == name:lower() then
+				return keycode
+			end
+		end
+	end
 
 	local function updateWindowPos()
 		local deltaPos = Vector2.new(mouse.X, mouse.Y) - startDragMousePos
@@ -2031,6 +2040,8 @@ function Library.new(windowName: string, constrainToScreen: boolean?): table
 		constrainToScreen = true
 	end
 
+	visibilityKeybind = getMatchingKeyCodeFromName(visibilityKeybind) or Enum.KeyCode.RightControl
+
 	window.Type = "Window"
 	window.Instance = windowInstance
 	window.GuiToRemove = windowInstance
@@ -2044,13 +2055,32 @@ function Library.new(windowName: string, constrainToScreen: boolean?): table
 	buttonHolder.Plus.MouseButton1Click:Connect(maximizeWindow)
 	buttonHolder.Minus.MouseButton1Click:Connect(minimizeWindow)
 
+	UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
+		if gameProcessedEvent then return end
+		if input.UserInputType == Enum.UserInputType.Keyboard then
+			if input.KeyCode == visibilityKeybind then
+				background.Visible = not background.Visible
+			end
+		end
+	end)
+
 	holder.Tabs.TabsUIListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
 		holder.Tabs.CanvasSize = UDim2.fromOffset(0,holder.Tabs.TabsUIListLayout.AbsoluteContentSize.Y + holder.Tabs.TabsUIListLayout.Padding.Offset)
 	end)
 
 	heading.Title.Text = windowName or "Cerberus"
 	windowInstance.Parent = game:GetService("CoreGui") -- Change to core later on and add detection bypass
-	background.Size = UDim2.new(0,background.AbsoluteSize.X,0,background.AbsoluteSize.Y)
+	background.Size = UDim2.fromOffset(background.AbsoluteSize.X, background.AbsoluteSize.Y)
+	
+	if width then
+		background.Size = UDim2.fromOffset(width, background.AbsoluteSize.Y)
+	end
+
+	if height then
+		background.Size = UDim2.fromOffset(background.AbsoluteSize.X, height)
+	end
+
+	holder.PageLogo.Image = backgroundImageId or "rbxassetid://11435586663"
 	background.Position = UDim2.new(0, background.AbsolutePosition.X + background.AbsoluteSize.X / 2, 0, background.AbsolutePosition.Y + background.AbsoluteSize.Y / 2 + 36)
 	background.BackgroundUIAspectRatioConstraint:Destroy()
 	holder.Size = UDim2.new(0,holder.AbsoluteSize.X,0,holder.AbsoluteSize.Y)
@@ -2879,6 +2909,7 @@ function elementHandler:Keybind(keybindName: string, callback, defaultKey: strin
 	defaultKey = defaultKey or "F"
 	
 	local function getMatchingKeyCodeFromName(name: string)
+		if not name then return end
 		for i, keycode in pairs(Enum.KeyCode:GetEnumItems()) do
 			if keycode.Name:lower() == name:lower() then
 				return keycode
